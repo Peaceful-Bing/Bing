@@ -19,10 +19,10 @@ Kettle GPLoad config
 >- PGPASSWORD:  market
 >- PGPORT: 5432
 >- PGUSER:  market_internet
->>![](/ETLTools/system.png)
+>>![](/ETLTools/ion/system.png)
 
 >**Configure GPLoad in kettle**
->>![](/ETLTools/gpload.png)
+>>![](/ETLTools/ion/gpload.png)
 >- Two option in [Load method]
 >   - Automatic load (at the end)
 >   - Manual load (only creation of file) : Only generate cfg and dat file, and it needs manual execute gpload command.The _cfg_ is gpload's yml file.The _dat_ is data files.
@@ -34,7 +34,7 @@ Kettle GPLoad config
 > 
 >   Note: In table must choose one field as "Y" of _Match_ and _Update_._Update_ is meaning when the records existing kettle will update this field. If we don't saved the configurtion in panel, we can change this information in job file.
 >
-> >![](/ETLTools/GPLoad_Host.png)
+> >![](/ETLTools/ion/GPLoad_Host.png)
 > - [Local Host Names]
 >    - Port is used for gpfdist
 >    - Host is gpfdist's ip
