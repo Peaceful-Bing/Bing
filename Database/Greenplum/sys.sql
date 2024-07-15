@@ -33,11 +33,11 @@ CREATE ROLE "tsoft";
 CREATE ROLE "tsoft" LOGIN;
 CREATE ROLE "tsoft" LOGIN PASSWORD 'tsoft';
 GRANT Connect ON DATABASE "db_dalian" TO "market_dfda" WITH GRANT OPTION;
---表：
+-- Table：
 GRANT Usage ON SCHEMA "code" TO "tsoft" WITH GRANT OPTION;
 GRANT Select ON TABLE "code"."t_codetype_manager_test" TO "tsoft" WITH GRANT OPTION;
 GRANT Delete, Insert, References, Select, Trigger, Update ON TABLE "code"."t_dim" TO "tsoft" WITH GRANT OPTION;
---成员：
+-- Member：
 GRANT "tsoft" TO "internet" WITH ADMIN OPTION;
 REVOKE Select ON TABLE "code"."t_dim" FROM "tsoft";
 
