@@ -48,6 +48,5 @@ END
 CLOSE ColumnCursor
 DEALLOCATE ColumnCursor
 
--- 查询结果
 SELECT * FROM #MaxValues
 ORDER BY TableName, ColumnName

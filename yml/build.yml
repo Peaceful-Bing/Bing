@@ -1,0 +1,58 @@
+######################################################################################################################
+# This is a wrapper yml used as a Build Pipeline.. this is using build-template.yml under azure-pipelines-template and 
+# running all tasks related to Build process.
+######################################################################################################################
+
+# To run pipeline by only using scheduled triggers, you disable PR and continuous integration triggers
+# by specifying pr: none and trigger: none in YAML file.
+trigger: none
+pr: none
+
+# schedules:
+# - cron: "56 06 * * *"
+#   displayName: Daily midnight build
+#   branches:
+#     include:
+#     - feature/template_enhancement
+#   always: true
+
+parameters:
+- name: action
+  displayName: Action
+  type: string
+  default: install
+  values:
+  - install
+  - update
+  - replace
+  - destroy
+
+pool:
+  name: Azure Pipelines
+  vmImage: ubuntu-latest
+
+  
+variables:
+  - template: env-config/common-variables.yml
+    parameters:
+      action: ${{ parameters.action }} 
+  - ${{ if eq(variables['Build.SourceBranchName'], 'Sandbox') }}: # only works if this is sandbox branch
+    - group: Sandbox
+  - ${{ if eq(variables['Build.SourceBranchName'], 'NonProd') }}: # only works if this is nonprod branch
+    - group: NonProd
+  - ${{ if eq(variables['Build.SourceBranchName'], 'Prod') }}: # only works if this is prod branch
+    - group: Prod
+
+
+stages:
+  - template: azure-pipelines-template/build-template.yml
+    parameters:
+      ASAP_PROJECT_ID: $(ASAP_PROJECT_ID)
+      ASAP_AIR_ID: $(ASAP_AIR_ID)
+      PYTHON_VERSION: $(PYTHON_VERSION)
+      pylint_version: $(pylint_version)
+      GCP_PROJECT_ID: $(GCP_PROJECT_ID)
+      jobname: $(jobname)
+      pylint_min_rank: $(pylint_min_rank)
+
+
