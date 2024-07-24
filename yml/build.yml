@@ -20,12 +20,12 @@ parameters:
 - name: action
   displayName: Action
   type: string
-  default: install
+  default: Sandbox
   values:
-  - install
-  - update
-  - replace
-  - destroy
+  - Sandbox
+  - NonProd
+  - Prod
+
 
 pool:
   name: Azure Pipelines
