@@ -24,6 +24,10 @@ BEGIN
     END LOOP;
 END $$;
 
+
+
+
+
 /***************************************************************
     system table
 ***************************************************************/
@@ -40,8 +44,6 @@ GRANT Delete, Insert, References, Select, Trigger, Update ON TABLE "code"."t_dim
 -- Member：
 GRANT "tsoft" TO "internet" WITH ADMIN OPTION;
 REVOKE Select ON TABLE "code"."t_dim" FROM "tsoft";
-
-
 
 
 -- terminate processes  

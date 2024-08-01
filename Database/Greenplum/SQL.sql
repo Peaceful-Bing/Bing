@@ -1,4 +1,7 @@
---字段合并
+/***********************
+        字段合并
+************************/
+
 --方法1：
 	select deptno, string_agg(ename, ',') from jinbo.employee group by deptno;
 /*	
@@ -14,6 +17,7 @@
 	     20 | JONES
 	     30 | MARTIN,ALLEN
 */
+
 --方法2：
 	select deptno, array_agg(ename) from jinbo.employee group by deptno;
 /*
@@ -43,7 +47,12 @@
 	 {30,20}
 	(1 row)
 */
---行转列
+
+
+/***********************
+         行转列
+************************/
+
 -- 方法1
 	select
 	c_MDSEid,
@@ -53,6 +62,28 @@
 	from syn_network.t_Net
 	group by c_MDSEid
 	order by c_MDSEid;
-	
---拆分数据
-    regexp_split_to_table(name,',')
+
+
+
+/***********************	
+         拆分数据
+************************/
+select regexp_split_to_table(name,',')
+
+
+
+/***********************
+        Sequence
+************************/
+
+--设置下个值
+select setval('employ_id_seq',100);
+
+--当前值
+select currval('employ_id_seq');
+
+--消耗下个值
+select nextval('employ_id_seq');
+
+--查看sequence
+SELECT c.relname FROM pg_class c WHERE c.relkind = 'S';
