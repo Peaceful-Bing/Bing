@@ -1,7 +1,7 @@
 import pandas as pd
 
 
-file_path = 'C:/Users/Z13581/OneDrive - The Coca-Cola Company/Desktop/Bing/Test/test.xlsx'
+file_path = 'C:/Users/test.xlsx'
 xls = pd.ExcelFile(file_path)
 
 df = pd.read_excel(xls, sheet_name='Index')
